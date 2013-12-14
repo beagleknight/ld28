@@ -1,0 +1,17 @@
+{
+  "name": "ld28",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ultrayoshi/ld28",
+  "authors": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "requirejs": "~2.1.9"
+  }
+}
