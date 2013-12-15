@@ -6,9 +6,10 @@ define(function() {
         ctx;
     
     game.init = function(canvas, cb) {
-        cb();
         timeLastUpdate = +new Date();
         ctx = canvas.getContext("2d");
+        // aqui cargaremos texturas y demas
+        cb();
     };
     
     game.start = function() {

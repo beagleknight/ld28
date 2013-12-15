@@ -10,10 +10,15 @@ requirejs.config({
 
 define(function (require) {
     var $       = require('jquery'),
-        level0  = require('json!data/level0.json'); // usando require.js podemos leer ficheros json ahora
+        game    = require('game'),
+        Entity  = require('entity');
     
     $(function () {
-        console.log('DOM ready');
-        console.log(level0);
+        var canvas = $('#game')[0];
+        
+        game.init(canvas, function () {
+            game.addEntity(new Entity(100, 100));
+            game.start();
+        });
     });
 });

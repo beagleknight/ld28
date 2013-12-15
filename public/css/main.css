@@ -1,0 +1,18 @@
+#wrapper {
+    width: 800px;
+    margin: 25px auto;
+    text-align: center;
+}
+
+#wrapper h1 {
+    text-align: center;
+    background: #6c6;
+    font-size: 26px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #2c2;
+}
+
+#wrapper canvas {
+    border: 1px solid #000;
+}
