@@ -14,5 +14,8 @@
   "devDependencies": {
     "requirejs": "~2.1.9",
     "jquery": "~2.0.3"
+  },
+  "dependencies": {
+    "requirejs-plugins": "~1.0.2"
   }
 }
