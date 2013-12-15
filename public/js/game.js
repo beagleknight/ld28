@@ -1,10 +1,13 @@
 define(function(require) {
     var resourceManager = require('resource_manager'),
-        inputManager    = require('input_manager');
+        inputManager    = require('input_manager'),
+        gameData        = require('game_data'),
+        Level           = require('level');
 
     var game = {},  
         timeLastUpdate,
         entities = [],
+        levels = [],
         looping = false,
         ctx;
     
@@ -49,6 +52,10 @@ define(function(require) {
     
     game.addEntity = function(entity) {
         entities.push(entity);
+    };
+    
+    game.addLevel = function(levelId) {
+        levels.push(new Level(game, gameData.levels[levelId]));
     };
     
     return game;

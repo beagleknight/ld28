@@ -10,4 +10,6 @@ define(function(require) {
     Decoration.prototype.isBroken = function () {
         return this.broken;
     };
+    
+    return Decoration;
 });

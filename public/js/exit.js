@@ -20,7 +20,7 @@ define(function (require) {
     
     Exit.prototype.render = function (ctx) {
         Entity.prototype.render.call(this, ctx);
-        ctx.drawImage(this.texture, this.posX, this.posY);
+        ctx.drawImage(this.texture, this.position.x, this.position.y);
     };
   
     Exit.prototype.doDamage = function (damage) {
