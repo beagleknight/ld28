@@ -8,7 +8,6 @@ define(function (require) {
         this.texture = resourceManager.getImage("player");
         this.moviendo = false;
         this.velocityMod = 100;
-        this.velocity = {'x': 0, 'y': 0};
     };  
     Player.prototype = new Entity(null, {});
 
@@ -30,11 +29,9 @@ define(function (require) {
         }
         
         if (this.moviendo) {
-            var diffX = clickPosition.x - this.position.x;
-            var diffY = clickPosition.y - this.position.y;
-            var modDiff = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
-            this.velocity.x = (diffX / modDiff) * this.velocityMod;
-            this.velocity.y = (diffY / modDiff) * this.velocityMod;
+            this.velocity.setVector({'x': clickPosition.x - this.position.x, 'y': clickPosition.y - this.position.y});
+            this.velocity.scalar(this.velocityMod);
+            this.velocity.direccion();
         }
     };
     

@@ -1,8 +1,10 @@
-﻿define(function () {
+﻿define(function (require) {
+    var Vector = require('vector');
+    
     var Entity = function (name, position) {
         this.name = name;
         this.position = {'x': position.x || 0, 'y': position.y || 0};
-        this.velocity = { x: 0, y: 0 };
+        this.velocity = new Vector({'x': 0, 'y': 0});
     };
 
     Entity.prototype.render = function (ctx) {
