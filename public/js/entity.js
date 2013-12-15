@@ -17,7 +17,7 @@ console.log('Estoy dibujandoooooooooo.');
         ctx.strokeStyle = 'blue';
         ctx.stroke();
     };
-    Entity.prototype.update = function (delta) {
+    Entity.prototype.update = function () {
         // TODO
     };
     

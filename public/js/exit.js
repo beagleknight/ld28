@@ -13,7 +13,7 @@ define(function (require) {
     Exit.prototype.romper = function (damage) {
         this.salud -= damage;
         
-        if (salud <= 0) {
+        if (this.salud <= 0) {
             this.abierta = true;
         }
     };

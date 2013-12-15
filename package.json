@@ -2,7 +2,10 @@
   "name": "ld28",
   "version": "0.0.0",
   "description": "Ludum Dare #28: You Only Get One",
-  "main": "index.js",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +23,8 @@
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.7.2",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-connect": "~0.5.0"
+    "express": "~3.4.7",
+    "grunt-nodemon": "~0.1.2",
+    "grunt-concurrent": "~0.4.2"
   }
 }

@@ -6,7 +6,7 @@ module.exports = function (grunt) {
                     jshintrc: '.jshintrc'
                 },
                 files: {
-                    src: ['Gruntfile.js', 'js/**/*.js']
+                    src: ['Gruntfile.js', 'public/js/**/*.js']
                 }
             }
         },
@@ -16,10 +16,21 @@ module.exports = function (grunt) {
                 tasks: ['jshint']
             }
         },
-        connect: {
-            server: {
+        nodemon: {
+              dev: {
+                    options: {
+                          file: 'server.js',
+                          env: {
+                                PORT: '9000'
+                          }
+                    }
+              }
+        },
+        concurrent: {
+            dev: {
+                tasks: ['nodemon', 'watch'],
                 options: {
-                    port: 9000
+                    logConcurrentOutput: true
                 }
             }
         }
@@ -27,7 +38,8 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-concurrent');
 
-    grunt.registerTask('default', ['jshint', 'connect', 'watch']);
+    grunt.registerTask('default', ['jshint', 'concurrent']);
 };

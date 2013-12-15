@@ -14,7 +14,7 @@ define(function (require) {
         
         // TODO
     };
-    Player.prototype.update = function (delta) {
+    Player.prototype.update = function () {
         // TODO
     };
     
