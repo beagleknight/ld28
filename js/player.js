@@ -1,21 +1,31 @@
 define(function (require) {
     var Entity = require('entity');
 
-  var Player = function (name) {
-      this.name = name;
-  };  
-  Player.prototype = new Entity();
+    var Player = function (name, posX, posY) {
+        Entity.call(this, posX, posY);
+        
+        this.name = name;
+    };  
+    Player.prototype = new Entity();
   
 
-  Player.prototype.attack = function () {
-    console.log("My name is " + this.name + ", you killed my father, prepare to die!");
+    Player.prototype.render = function (ctx) {
+        Entity.prototype.render.call(this, ctx);
+        
+        // TODO
+    };
+    Player.prototype.update = function (delta) {
+        // TODO
+    };
+    
+    Player.prototype.move = function (posX, posY) {
+        Entity.prototype.setPosition.call(this, posX, posY);
+    };
+    Player.prototype.attack = function () {
+console.log("My name is " + this.name + ", you killed my father, prepare to die!");
 
-    window.alert("Luz");
-    window.alert("Fuego");
-    window.alert("Destrucción");
-    window.alert("El mundo puede ser una ruina");
-    window.alert("Hay que ponerse a programaaaaaaaarrr");
-  };
+        // TODO
+    };
 
-  return Player;
+    return Player;
 });
