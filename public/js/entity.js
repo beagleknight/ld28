@@ -1,7 +1,7 @@
 ﻿define(function () {
-    var Entity = function (posX, posY) {
-        this.posX = posX || 0;
-        this.posY = posY || 0;
+    var Entity = function (posicion) {
+        this.posX = posicion.x || 0;
+        this.posY = posicion.y || 0;
     };
 
   
@@ -21,9 +21,9 @@ console.log('Estoy dibujandoooooooooo.');
         // TODO
     };
     
-    Entity.prototype.setPosicion = function (posX, posY) {
-        this.posX = posX;
-        this.posY = posY;
+    Entity.prototype.setPosicion = function (posicion) {
+        this.posX = posicion.x;
+        this.posY = posicion.y;
     };
     
 
