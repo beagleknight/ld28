@@ -3,7 +3,7 @@
         {
          "data":[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
          "height":15,
-         "name":"Terreno",
+         "name":"map",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
@@ -13,62 +13,356 @@
         }, 
         {
          "height":15,
-         "name":"Salidas",
+         "name":"entities",
          "objects":[
                 {
-                 "height":32,
-                 "name":"window1",
+                 "gid":3,
+                 "height":0,
+                 "name":"player",
                  "properties":
                     {
-                     "hp":"100",
-                     "texture":"window"
+
                     },
-                 "type":"exit",
+                 "type":"player",
                  "visible":true,
-                 "width":32,
-                 "x":0,
+                 "width":0,
+                 "x":288,
                  "y":128
                 }, 
                 {
-                 "height":32,
-                 "name":"door1",
-                 "properties":
-                    {
-                     "hp":"300",
-                     "texture":"door"
-                    },
-                 "type":"exit",
-                 "visible":true,
-                 "width":32,
-                 "x":0,
-                 "y":320
-                }, 
-                {
-                 "height":32,
+                 "gid":5,
+                 "height":0,
                  "name":"window2",
                  "properties":
                     {
-                     "hp":"100",
                      "texture":"window"
                     },
                  "type":"exit",
                  "visible":true,
-                 "width":32,
+                 "width":0,
                  "x":608,
-                 "y":128
+                 "y":160
                 }, 
                 {
-                 "height":32,
+                 "gid":5,
+                 "height":0,
                  "name":"door2",
                  "properties":
                     {
-                     "hp":"300",
                      "texture":"door"
                     },
                  "type":"exit",
                  "visible":true,
-                 "width":32,
+                 "width":0,
                  "x":608,
+                 "y":352
+                }, 
+                {
+                 "gid":5,
+                 "height":0,
+                 "name":"door1",
+                 "properties":
+                    {
+                     "texture":"door"
+                    },
+                 "type":"exit",
+                 "visible":true,
+                 "width":0,
+                 "x":0,
+                 "y":352
+                }, 
+                {
+                 "gid":5,
+                 "height":0,
+                 "name":"window1",
+                 "properties":
+                    {
+                     "texture":"window"
+                    },
+                 "type":"exit",
+                 "visible":true,
+                 "width":0,
+                 "x":0,
+                 "y":160
+                }, 
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"enemy1",
+                 "properties":
+                    {
+
+                    },
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":128,
+                 "y":192
+                }, 
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"enemy2",
+                 "properties":
+                    {
+
+                    },
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":224,
+                 "y":192
+                }, 
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"enemy3",
+                 "properties":
+                    {
+
+                    },
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":480,
+                 "y":192
+                }, 
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"enemy4",
+                 "properties":
+                    {
+
+                    },
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":384,
+                 "y":192
+                }, 
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"enemy5",
+                 "properties":
+                    {
+
+                    },
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":480,
+                 "y":384
+                }, 
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"enemy6",
+                 "properties":
+                    {
+
+                    },
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":384,
+                 "y":384
+                }, 
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"enemy7",
+                 "properties":
+                    {
+
+                    },
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":224,
+                 "y":384
+                }, 
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"enemy8",
+                 "properties":
+                    {
+
+                    },
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":128,
+                 "y":384
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair1",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":128,
+                 "y":224
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair2",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":224,
+                 "y":224
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair3",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":128,
+                 "y":416
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair4",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":224,
+                 "y":416
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair5",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":384,
+                 "y":416
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair6",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":480,
+                 "y":416
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair7",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":384,
+                 "y":224
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair8",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":480,
+                 "y":224
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair9",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":128,
+                 "y":320
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair10",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":480,
+                 "y":320
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair11",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":224,
+                 "y":320
+                }, 
+                {
+                 "gid":6,
+                 "height":0,
+                 "name":"chair12",
+                 "properties":
+                    {
+
+                    },
+                 "type":"decoration",
+                 "visible":true,
+                 "width":0,
+                 "x":384,
                  "y":320
                 }],
          "opacity":1,
@@ -92,6 +386,22 @@
          "imagewidth":64,
          "margin":0,
          "name":"tileset",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":32,
+         "tilewidth":32,
+         "transparentcolor":"#ff00ff"
+        }, 
+        {
+         "firstgid":3,
+         "image":"logictileset.png",
+         "imageheight":32,
+         "imagewidth":128,
+         "margin":0,
+         "name":"logictileset",
          "properties":
             {
 
