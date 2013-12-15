@@ -1,8 +1,8 @@
 ﻿define(function () {
     var Entity = function (name, position) {
         this.name = name;
-        this.posX = position.x || 0;
-        this.posY = position.y || 0;
+        this.position = {'x': position.x || 0, 'y': position.y || 0};
+        this.velocity = { x: 0, y: 0 };
     };
 
     Entity.prototype.render = function (ctx) {
@@ -17,13 +17,14 @@
         ctx.stroke();
     };
     
-    Entity.prototype.update = function () {
-        // TODO
+    Entity.prototype.update = function (delta) {
+        this.position.x = this.position.x + this.velocity.x * delta;
+        this.position.y = this.position.y + this.velocity.y * delta;
     };
     
     Entity.prototype.setPosition = function (position) {
-        this.posX = position.x;
-        this.posY = position.y;
+        this.position.x = position.x;
+        this.position.y = position.y;
     };
 
     return Entity;

@@ -27,12 +27,14 @@ define(function(require) {
         var now = +new Date();
         var delta = now - timeLastUpdate;
         timeLastUpdate = now;
-        update(delta);
+        update(delta / 1000);
         render(ctx);
     }
     
     function render(ctx) {
         var i, l;
+        
+        ctx.clearRect(0, 0, 640, 480);
         for(i = 0, l = entities.length; i < l; i++) {
             entities[i].render(ctx);
         }
