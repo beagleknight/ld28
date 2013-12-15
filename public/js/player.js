@@ -7,6 +7,8 @@ define(function (require) {
         Entity.call(this, "player", position);
         this.texture = resourceManager.getImage("player");
         this.moviendo = false;
+        this.velocityMod = 100;
+        this.velocity = {'x': 0, 'y': 0};
     };  
     Player.prototype = new Entity(null, {});
 
@@ -18,31 +20,21 @@ define(function (require) {
     Player.prototype.update = function (dt) {
         Entity.prototype.update.call(this, dt);
 
-        var newPosition = {};
         var clickPosition = inputManager.getClickPosition();
 
         if (inputManager.isMouseClicked()) {
-            //console.log("me voy a mover");        
             this.moviendo = true;
         }
         if (this.position.x <= clickPosition.x + this.velocity.x && this.position.x >= clickPosition.x - this.velocity.x && this.position.y <= clickPosition.y + this.velocity.y && this.position.y >= clickPosition.y - this.velocity.y) {
-            //console.log("me voy a parar");
             this.moviendo = false;
         }
         
-        this.velocity = { x: 0, y: 0 };
-        
         if (this.moviendo) {
-            //console.log("me estoy moviendo");
-            var right = clickPosition.x > this.position.x;
-            var left = clickPosition.x < this.position.x;
-            var up = clickPosition.y < this.position.y;
-            var down = clickPosition.y > this.position.y;        
-                    
-            if (right)  { this.velocity.x = 20; }
-            if (left)   { this.velocity.x = -20; }
-            if (up)     { this.velocity.y = -20; }
-            if (down)   { this.velocity.y = 20; }
+            var diffX = clickPosition.x - this.position.x;
+            var diffY = clickPosition.y - this.position.y;
+            var modDiff = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+            this.velocity.x = (diffX / modDiff) * this.velocityMod;
+            this.velocity.y = (diffY / modDiff) * this.velocityMod;
         }
     };
     
