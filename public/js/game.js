@@ -1,4 +1,6 @@
-define(function() {
+define(function(require) {
+    var resourceManager = require('resource_manager');
+
     var game = {},  
         timeLastUpdate,
         entities = [],
@@ -8,8 +10,7 @@ define(function() {
     game.init = function(canvas, cb) {
         timeLastUpdate = +new Date();
         ctx = canvas.getContext("2d");
-        // aqui cargaremos texturas y demas
-        cb();
+        resourceManager.init(cb);
     };
     
     game.start = function() {
