@@ -6,9 +6,6 @@
     "node": "0.10.x"
   },
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/ultrayoshi/ld28.git"
@@ -20,7 +17,8 @@
   },
   "homepage": "https://github.com/ultrayoshi/ld28",
   "dependencies": {
-    "express": "~3.4.7"
+    "express": "~3.4.7",
+    "bower": "1.2.x"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
