@@ -1,5 +1,6 @@
 define(function(require) {
-    var resourceManager = require('resource_manager');
+    var resourceManager = require('resource_manager'),
+        inputManager    = require('input_manager');
 
     var game = {},  
         timeLastUpdate,
@@ -10,6 +11,7 @@ define(function(require) {
     game.init = function(canvas, cb) {
         timeLastUpdate = +new Date();
         ctx = canvas.getContext("2d");
+        inputManager.init(canvas);
         resourceManager.init(cb);
     };
     
