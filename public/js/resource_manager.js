@@ -1,11 +1,14 @@
 define(function() {
-    var textures = [
-      { name: "test", path: "/assets/test.png" }
-    ];
-    
-    var images = {};
-    
-    var resourceManager = {};
+    var resourceManager = {},
+        images = {},
+        textures = [
+            { name: "player", path: "/assets/player.png" },
+            { name: "enemy", path: "/assets/enemy.png" },
+            { name: "window", path: "/assets/window.png" },
+            { name: "door", path: "/assets/door.png" },
+            { name: "tileset", path: "/assets/tileset.png" }
+        ],
+        loadedImages = 0;
     
     resourceManager.init = function(cb) {
         var i, l;
@@ -13,11 +16,15 @@ define(function() {
             loadImage(i);
         }
         var interval = setInterval(function() {
-            if(textures.length === images.length) { 
+            if(textures.length === loadedImages) { 
                 clearInterval(interval);
                 cb(); 
             }
-        }, 1000);
+        }, 100);
+    };
+    
+    resourceManager.getImage = function (imageId) {
+        return images[imageId];
     };
     
     function loadImage(i) {
@@ -25,7 +32,9 @@ define(function() {
         image.src = textures[i].path;
         image.onload = function() {
             images[textures[i].name] = image;
+            loadedImages += 1;
         };
     }
     
+    return resourceManager;
 });

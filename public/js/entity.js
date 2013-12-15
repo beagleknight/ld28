@@ -1,12 +1,11 @@
 ﻿define(function () {
-    var Entity = function (posicion) {
-        this.posX = posicion.x || 0;
-        this.posY = posicion.y || 0;
+    var Entity = function (name, position) {
+        this.name = name;
+        this.posX = position.x || 0;
+        this.posY = position.y || 0;
     };
 
-  
     Entity.prototype.render = function (ctx) {
-console.log('Estoy dibujandoooooooooo.');
         ctx.beginPath();
 
         ctx.moveTo(this.posX - 5, this.posY);
@@ -17,15 +16,15 @@ console.log('Estoy dibujandoooooooooo.');
         ctx.strokeStyle = 'blue';
         ctx.stroke();
     };
+    
     Entity.prototype.update = function () {
         // TODO
     };
     
-    Entity.prototype.setPosicion = function (posicion) {
-        this.posX = posicion.x;
-        this.posY = posicion.y;
+    Entity.prototype.setPosition = function (position) {
+        this.posX = position.x;
+        this.posY = position.y;
     };
-    
 
     return Entity;
 });

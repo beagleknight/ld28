@@ -1,14 +1,11 @@
 define(function(require) {
     var Entity = require('entity');
     
-    var Enemy = function(x, y, name) {
-        Entity.call(this, x, y);
-        this.name = name;
+    var Enemy = function(name, position) {
+        Entity.call(this, name, position);
+        this.alive = true;
     };
-    
-    Enemy.prototype = new Entity();
-    
-    Enemy.prototype.alive = true;
+    Enemy.prototype = new Entity(null, {});
     
     Enemy.prototype.isAlive = function() {
         return this.alive;
@@ -17,5 +14,4 @@ define(function(require) {
     Enemy.prototype.kill = function() {
         this.alive = false;
     };
-    
 });

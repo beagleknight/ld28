@@ -11,13 +11,13 @@ requirejs.config({
 define(function (require) {
     var $       = require('jquery'),
         game    = require('game'),
-        Entity  = require('entity');
+        Player  = require('player');
     
     $(function () {
         var canvas = $('#game')[0];
         
         game.init(canvas, function () {
-            game.addEntity(new Entity(100, 100));
+            game.addEntity(new Player({ x: 100, y: 100 }));
             game.start();
         });
     });
