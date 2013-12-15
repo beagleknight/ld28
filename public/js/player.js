@@ -1,13 +1,16 @@
 define(function (require) {
-    var Entity = require('entity');
+    var Entity          = require('entity'),
+        resourceManager = require('resource_manager');
 
     var Player = function (position) {
         Entity.call(this, "player", position);
+        this.texture = resourceManager.getImage("player");
     };  
     Player.prototype = new Entity(null, {});
 
     Player.prototype.render = function (ctx) {
         Entity.prototype.render.call(this, ctx);
+        ctx.drawImage(this.texture, this.posX, this.posY);
     };
     
     Player.prototype.update = function (dt) {
