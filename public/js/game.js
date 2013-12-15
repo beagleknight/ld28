@@ -35,19 +35,16 @@ define(function(require) {
     }
     
     function render(ctx) {
-        var i, l;
-        
         ctx.clearRect(0, 0, 640, 480);
-        for(i = 0, l = entities.length; i < l; i++) {
-            entities[i].render(ctx);
-        }
+        game.forEachEntity("all", function (entity) {
+            entity.render(ctx);
+        });
     }
     
     function update(delta) {
-        var i, l;
-        for(i = 0, l = entities.length; i < l; i++) {
-            entities[i].update(delta);
-        }
+        game.forEachEntity("all", function (entity) {
+            entity.update(delta);
+        });
     }
     
     game.addEntity = function(entity) {
@@ -56,6 +53,23 @@ define(function(require) {
     
     game.addLevel = function(levelId) {
         levels.push(new Level(game, gameData.levels[levelId]));
+    };
+    
+    game.forEachEntity = function (entityGroup, cb) {
+        var i, l;
+        for(i = 0, l = entities.length; i < l; i++) {
+            if (entityGroup === "all" || entities[i].group === entityGroup) {
+                cb(entities[i]);
+            }
+        }
+    };
+    
+    game.applyToEntity = function (name, cb) {
+        game.forEachEntity("all", function (entity) {
+            if (entity.name === name) {
+                cb(entity);
+            }
+        }
     };
     
     return game;
