@@ -1,19 +1,22 @@
 define(function (require) {
     var $ = require('jquery'),
         inputManager = {},
-        posX, 
-        posY,
+        mousePosition = {},
+        clickPosition = {},
         mouseClicked = false,
         canvasRect;
 
     inputManager.init = function(canvas) {
-        $(canvas).on("mousemove", onMouseMove);
-        $(canvas).on("mouseclick", onMouseClick);
+        $(canvas).on('mousemove', onMouseMove);
+        $(canvas).on('click', onMouseClick);
         canvasRect = canvas.getBoundingClientRect();
     };
     
-    inputManager.getPosition = function () {
-        return {'x': posX, 'y': posY};
+    inputManager.getMousePosition = function () {
+        return mousePosition;
+    };
+    inputManager.getClickPosition = function () {
+        return clickPosition;
     };
     inputManager.isMouseClicked = function () {
         var clicked = mouseClicked;
@@ -23,11 +26,13 @@ define(function (require) {
     };
     
     function onMouseMove (event) {
-        posX = event.pageX - canvasRect.left;
-        posY = event.pageY - canvasRect.top;
+        mousePosition.x = event.pageX - canvasRect.left;
+        mousePosition.y = event.pageY - canvasRect.top;
     }
     function onMouseClick () {
         mouseClicked = true;
+        clickPosition.x = event.pageX - canvasRect.left;
+        clickPosition.y = event.pageY - canvasRect.top;
     }
     
 

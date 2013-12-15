@@ -1,8 +1,7 @@
 ﻿define(function () {
     var Entity = function (name, position) {
         this.name = name;
-        this.posX = position.x || 0;
-        this.posY = position.y || 0;
+        this.position = {'x': position.x || 0, 'y': position.y || 0};
     };
 
     Entity.prototype.render = function (ctx) {
@@ -22,8 +21,8 @@
     };
     
     Entity.prototype.setPosition = function (position) {
-        this.posX = position.x;
-        this.posY = position.y;
+        this.position.x = position.x;
+        this.position.y = position.y;
     };
 
     return Entity;
