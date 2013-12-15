@@ -1,13 +1,27 @@
 define(function (require) {
-    var Entity = require('entity');
+    var Entity = require('entity'),
+        resourceManager = require('resource_manager');
 
-    var Exit = function (name, position, health) {
+    var Exit = function (name, position, type) {
         Entity.call(this, name, position);
         
-        this.health = health || 100;
+        this.texture = resourceManager.getImage(type);
+        switch(type) {
+            case "window":
+                this.health = 100;
+                break;
+            case "door":
+                this.health = 200;
+                break;    
+        }
         this.opened = false;
     };  
     Exit.prototype = new Entity(null, {});
+    
+    Exit.prototype.render = function (ctx) {
+        Entity.prototype.render.call(this, ctx);
+        ctx.drawImage(this.texture, this.posX, this.posY);
+    };
   
     Exit.prototype.doDamage = function (damage) {
         this.health -= damage;
