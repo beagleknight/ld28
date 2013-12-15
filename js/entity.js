@@ -5,10 +5,6 @@
     };
 
   
-    Entity.prototype.setPosicion = function (posX, posY) {
-        this.posX = posX;
-        this.posY = posY;
-    };  
     Entity.prototype.render = function (ctx) {
 console.log('Estoy dibujandoooooooooo.');
         ctx.beginPath();
@@ -20,6 +16,14 @@ console.log('Estoy dibujandoooooooooo.');
         
         ctx.strokeStyle = 'blue';
         ctx.stroke();
+    };
+    Entity.prototype.update = function (delta) {
+        // TODO
+    };
+    
+    Entity.prototype.setPosicion = function (posX, posY) {
+        this.posX = posX;
+        this.posY = posY;
     };
     
 
