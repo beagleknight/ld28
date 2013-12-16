@@ -12,11 +12,12 @@ define(function() {
     };
     
     TileMap.prototype.render = function (ctx) {
+        window.debugger;
         if (this.tileSetTexture) {
             var i, j;
-            for(i = 0; i < this.width; i++) {
-                for(j = 0; j < this.height; j++) {
-                    ctx.drawImage(this.tileSetTexture, this.tileSize*this.map[i*this.width+j], this.tileSize*this.map[i*this.width+j], this.tileSize, this.tileSize, i*this.tileSize,j*this.tileSize, this.tileSize, this.tileSize);
+            for(i = 0; i < this.height; i++) {
+                for(j = 0; j < this.width; j++) {
+                    ctx.drawImage(this.tileSetTexture, this.tileSize*(this.map[i*this.width+j]-1), 0, this.tileSize, this.tileSize, j*this.tileSize, i*this.tileSize, this.tileSize, this.tileSize);
                 }
             }
         }
