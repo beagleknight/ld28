@@ -54,7 +54,7 @@ define(function(require) {
     
     Level.prototype.render = function (ctx) {
         ctx.clearRect(0, 0, 640, 480);
-        //this.tileMap.render(ctx);
+        this.tileMap.render(ctx);
         this.forEachEntity("all", function (entity) {
             entity.render(ctx);
         });
