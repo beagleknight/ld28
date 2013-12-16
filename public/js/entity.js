@@ -1,4 +1,4 @@
-﻿define(function (require) {
+﻿define(function () {
     //var Vector = require('vector');
     
     var Entity = function (name, position) {
