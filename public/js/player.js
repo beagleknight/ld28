@@ -10,7 +10,6 @@ define(function (require) {
         this.size = { w: this.texture.width, h: this.texture.height };
         this.moviendo = false;
         this.velocityMod = 100;
-        this.velocity = {'x': 0, 'y': 0};
         this.rotation = utils.deg2rad(90);
     };  
     Player.prototype = new Entity(null, {});
@@ -35,11 +34,12 @@ define(function (require) {
         if (inputManager.isMouseClicked()) {
             this.moviendo = true;
         }
-        if (this.position.x <= clickPosition.x + this.velocity.x && this.position.x >= clickPosition.x - this.velocity.x && this.position.y <= clickPosition.y + this.velocity.y && this.position.y >= clickPosition.y - this.velocity.y) {
+        if (this.position.x === clickPosition.x && this.position.y === clickPosition.y) {
             this.moviendo = false;
         }
         
         if (this.moviendo) {
+<<<<<<< HEAD
             var diffX = clickPosition.x - this.position.x;
             var diffY = clickPosition.y - this.position.y;
             var modDiff = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
@@ -48,6 +48,10 @@ define(function (require) {
             this.rotation = Math.atan2(this.velocity.y, this.velocity.x);
             this.velocity.x *= this.velocityMod;
             this.velocity.y *= this.velocityMod;
+=======
+            this.velocity.setPosition({'x': clickPosition.x - this.position.x, 'y': clickPosition.y - this.position.y});
+            this.velocity.setVelocity(this.velocityMod);
+>>>>>>> origin/nosfer
         }
     };
     
