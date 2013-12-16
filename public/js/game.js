@@ -69,7 +69,7 @@ define(function(require) {
             if (entity.name === name) {
                 cb(entity);
             }
-        }
+        });
     };
     
     return game;
