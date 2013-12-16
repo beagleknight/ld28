@@ -1,34 +1,45 @@
 define(function() {
-    var Vector = function(vector) {
-        this.vector = {x: vector.x || 0, y: vector.y || 0};
+    var Vector = function(position) {
+        this.position = {'x': position.x || 0, 'y': position.y || 0};
+        this.direction = this.calculateDirection();
+        this.velocity = 0;
     };
     
-    Vector.prototype.setVector = function(vector) {
-        this.vector.x = vector.x || 0;
-        this.vector.y = vector.y || 0;
+    Vector.prototype.setPosition = function(position) {
+        this.position.x = position.x || 0;
+        this.position.y = position.y || 0;
+        this.direction = this.calculateDirection();
+    };
+    Vector.prototype.setVelocity = function(velocity) {
+        this.velocity = velocity;
+    };
+    Vector.prototype.getVelocityX = function() {
+        return this.direction.x * this.velocity;
+    };
+    Vector.prototype.getVelocityY = function() {
+        return this.direction.y * this.velocity;
     };
     
     Vector.prototype.module = function() {
-        return Math.sqrt(Math.pow(this.vector.x, 2)+Math.pow(this.vector.y, 2));
-    };
-    
-    Vector.prototype.direction = function() {
-        var modulo = this.module();
-        return {'x': this.vector.x / modulo, 'y': this.vector.y / modulo};
-    };
-    
-    Vector.prototype.add = function(vector) {
-        this.vector.x += vector.x;
-        this.vector.y += vector.y;
-        
-        return this.vector;
-    };
-    
+        return Math.sqrt(Math.pow(this.position.x, 2) + Math.pow(this.position.y, 2));
+    };    
+    Vector.prototype.add = function(position) {
+        this.position.x += position.x;
+        this.position.y += position.y;        
+        this.direction = this.calculateDirection();
+    };    
     Vector.prototype.scalar = function(k) {
-        this.vector.x *= k;
-        this.vector.y *= k;
-        
-        return this.vector;
+        this.position.x *= k;
+        this.position.y *= k;
+    };
+    
+    Vector.prototype.calculateDirection = function() {
+        var modulo = this.module();
+        if (modulo !== 0) {
+            return {'x': this.position.x * 1.0 / modulo, 'y': this.position.y * 1.0 / modulo};
+        } else {
+            return {'x': 0, 'y': 0};
+        }
     };
     
     return Vector;

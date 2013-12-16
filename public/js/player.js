@@ -24,14 +24,13 @@ define(function (require) {
         if (inputManager.isMouseClicked()) {
             this.moviendo = true;
         }
-        if (this.position.x <= clickPosition.x + this.velocity.x && this.position.x >= clickPosition.x - this.velocity.x && this.position.y <= clickPosition.y + this.velocity.y && this.position.y >= clickPosition.y - this.velocity.y) {
+        if (this.position.x === clickPosition.x && this.position.y === clickPosition.y) {
             this.moviendo = false;
         }
         
         if (this.moviendo) {
-            this.velocity.setVector({'x': clickPosition.x - this.position.x, 'y': clickPosition.y - this.position.y});
-            this.velocity.scalar(this.velocityMod);
-            this.velocity.direccion();
+            this.velocity.setPosition({'x': clickPosition.x - this.position.x, 'y': clickPosition.y - this.position.y});
+            this.velocity.setVelocity(this.velocityMod);
         }
     };
     
