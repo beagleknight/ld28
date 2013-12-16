@@ -15,16 +15,16 @@ define(function(require) {
             entity = data.layers[2].objects[i];
             switch(entity.type) {
                 case "decoration":
-                    this.addEntity(new Decoration(entity.name, {x: entity.x, y: entity.y}));
+                    this.addEntity(new Decoration(entity.name, {x: entity.x, y: entity.y - data.tileheight}));
                     break;
                 case "enemy":
-                    this.addEntity(new Enemy(entity.name, {x: entity.x, y: entity.y}));
+                    this.addEntity(new Enemy(entity.name, {x: entity.x, y: entity.y - data.tileheight}));
                     break;
                 case "exit":
-                    this.addEntity(new Exit(entity.name, {x: entity.x, y: entity.y}, entity.properties.texture));
+                    this.addEntity(new Exit(entity.name, {x: entity.x, y: entity.y - data.tileheight}, entity.properties.texture));
                     break;
                 case "player":
-                    this.addEntity(new Player({x: entity.x, y: entity.y}));
+                    this.addEntity(new Player({x: entity.x, y: entity.y - data.tileheight}));
                     break;
             }
         }

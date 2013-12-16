@@ -1,9 +1,11 @@
 define(function(require) {
-    var Sprite = require('sprite');
+    var Sprite = require('sprite'),
+        utils = require('utils');
     
     var Decoration = function(name, position) {
-        Sprite.call(this, name, position);
+        Sprite.call(this, name, position, "chair");
         this.broken = false;
+        this.rotation = utils.deg2rad(-90);
     };
     Decoration.prototype = new Sprite(null, {});
     

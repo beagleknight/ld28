@@ -6,7 +6,8 @@ define(function() {
             { name: "enemy", path: "/assets/enemy.png" },
             { name: "window", path: "/assets/window.png" },
             { name: "door", path: "/assets/door.png" },
-            { name: "tileset", path: "/assets/tileset.png" }
+            { name: "tileset", path: "/assets/tileset.png" },
+            { name: "chair", path: "/assets/chair.png" }
         ],
         loadedImages = 0;
     

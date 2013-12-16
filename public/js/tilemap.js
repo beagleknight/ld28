@@ -1,6 +1,5 @@
 define(function() {
-
-    var resource_manager = require('resource_manager');
+    var resourceManager = require('resource_manager');
     
     var TileMap = function(map, collisionMap, width, height, tileSize) {
         this.width = width;
@@ -8,11 +7,10 @@ define(function() {
         this.tileSize = tileSize;
         this.map = map;
         this.collisionMap = collisionMap;
-        this.tileSetTexture = resource_manager.getImage('tileset');
+        this.tileSetTexture = resourceManager.getImage('tileset');
     };
     
     TileMap.prototype.render = function (ctx) {
-        window.debugger;
         if (this.tileSetTexture) {
             var i, j;
             for(i = 0; i < this.height; i++) {
