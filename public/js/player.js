@@ -9,6 +9,7 @@ define(function (require) {
         this.velocityMod = 100;
         this.rotation = utils.deg2rad(90);
         this.destination = null;
+        this.group = "player";
     };  
     Player.prototype = new Sprite(null, {});
     

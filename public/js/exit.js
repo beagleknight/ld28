@@ -13,6 +13,7 @@ define(function (require) {
                 break;    
         }
         this.opened = false;
+        this.group = "exit";
     };  
     Exit.prototype = new Sprite(null, {});
   

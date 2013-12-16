@@ -6,6 +6,7 @@ define(function(require) {
         Sprite.call(this, name, position, "chair");
         this.broken = false;
         this.rotation = utils.deg2rad(-90);
+        this.group = "decoration";
     };
     Decoration.prototype = new Sprite(null, {});
     

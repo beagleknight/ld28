@@ -22,6 +22,7 @@ define(function(require) {
         this.velocityModExhausted = 25;
         this.fearDistance = 50;
         this.visionDistance = 300;
+        this.group = "enemy";
     };
     Enemy.prototype = new Sprite(null, {});
 
@@ -43,14 +44,14 @@ define(function(require) {
                 this.avoiding = true;
             } else {
                 dist = undefined;
-                level.forEachEntity("exit", function(entity) {
+                /*level.forEachEntity("exit", function(entity) {
                     distTemp = this.position.dist(entity.position);
                     
                     if (!dist || dist > distTemp) {
                         dist = distTemp;
                         exit = entity;
                     }
-                });
+                });*/
                 
                 if (dist <= this.visionDistance) {
                     this.leaving = true;
