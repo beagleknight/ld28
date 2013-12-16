@@ -7,6 +7,8 @@ define(function(require) {
         Sprite.call(this, name, position, "enemy");
         this.alive = true;
         this.rotation = utils.deg2rad(-90);
+        this.stunTime = 5000;
+        this.stunStart = 0;
     };
     Enemy.prototype = new Sprite(null, {});
     
@@ -14,8 +16,20 @@ define(function(require) {
         return this.alive;
     };
     
+    Enemy.prototype.isStunned = function() {
+        if (+new Date() - this.stunStart > this.stunTime) {
+            this.stunStart = 0;
+            return false;
+        } else {
+            return true;
+        }
+    };
+    
     Enemy.prototype.kill = function() {
         this.alive = false;
+    };
+    Enemy.prototype.stun = function() {
+        this.stunStart = +new Date();
     };
     
     return Enemy;

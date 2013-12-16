@@ -1,8 +1,9 @@
 define(function (require) {
     var $ = require('jquery'),
+        Vector = require('vector'),
         inputManager = {},
-        mousePosition = {},
-        clickPosition = {},
+        mousePosition = new Vector(0, 0),
+        clickPosition = new Vector(0, 0),
         mouseClicked = false,
         canvasRect;
 
