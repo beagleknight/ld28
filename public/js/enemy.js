@@ -15,22 +15,72 @@ define(function(require) {
         this.exhaustedStart = 0;
         this.cansancio = 1;
         this.recuperacion = 3;
-        this.moving = false;
+        this.avoiding = false;
+        this.leaving = false;
+        this.randomMove = false;
         this.velocityMod = 150;
         this.velocityModExhausted = 25;
+        this.fearDistance = 50;
+        this.visionDistance = 300;
     };
     Enemy.prototype = new Sprite(null, {});
 
     Enemy.prototype.update = function (dt) {
         Sprite.prototype.update.call(this, dt);
 
-        if (!this.isStunned() && this.moving) {
-            if (this.isExhausted()) {
-                this.velocity.scalar(this.velocityModExhausted);
-                this.descansar(dt);
+        if (!this.isStunned()) {
+            var level = require('game').getCurrentLevel();
+            var player, exit;
+            
+            var dist = 0;
+            var distTemp = 0;
+            level.applyToEntity("player", function(entity) {
+                player = entity;
+            });
+            dist = this.position.dist(player.position);
+            
+            if (dist <= this.fearDistance) {
+                this.avoiding = true;
             } else {
-                this.velocity.scalar(this.velocityMod);
-                this.cansar(dt);
+                dist = undefined;
+                level.forEachEntity("exit", function(entity) {
+                    distTemp = this.position.dist(entity.position);
+                    
+                    if (!dist || dist > distTemp) {
+                        dist = distTemp;
+                        exit = entity;
+                    }
+                });
+                
+                if (dist <= this.visionDistance) {
+                    this.leaving = true;
+                } else {
+                    // TODO decisión quedarse quieto/moverse
+                }
+            }
+            
+            if (this.avoiding || this.leaving || this.randomMove) {
+                if (this.avoiding) {
+                    this.velocity.copy(player.velocity);
+                } else if (this.leaving) {
+                    this.velocity.copy(exit.position);
+                    this.velocity.sub(this.position);
+                    this.velocity.normalize();
+                } else if (this.randomMove) {
+                    // TODO
+                }
+                
+                this.rotation = Math.atan2(this.velocity.y, this.velocity.x);
+                if (this.isExhausted()) {
+                    this.velocity.scalar(this.velocityModExhausted);
+                    this.descansar(dt);
+                } else {
+                    this.velocity.scalar(this.velocityMod);
+                    this.cansar(dt);
+                }
+            } else {
+                this.velocity.scalar(0);
+                this.descansar(dt);
             }
         } else {
             this.velocity.scalar(0);
