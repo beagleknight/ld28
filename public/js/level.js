@@ -1,16 +1,17 @@
 define(function(require) {
     
-    //var TileMap = require('tilemap');
     var Decoration = require('decoration'),
         Exit       = require('exit'),
         Enemy      = require('enemy'),
-        Player     = require('player');
+        Player     = require('player'),
+        TileMap    = require('tilemap');
     
     var Level = function(game, data) {
+        this.tilemap = new TileMap(data.layers[0].data, data.layers[1].data);
         var i, l, entity;
         //this.tileSet = new TileMap(data.layers[0]);
-        for(i = 0, l = data.layers[1].objects.length; i < l; i++) {
-            entity = data.layers[1].objects[i];
+        for(i = 0, l = data.layers[2].objects.length; i < l; i++) {
+            entity = data.layers[2].objects[i];
             switch(entity.type) {
                 case "decoration":
                     game.addEntity(new Decoration(entity.name, {x: entity.x, y: entity.y}));
