@@ -33,6 +33,10 @@ define(function() {
         this.x *= k;
         this.y *= k;
     };
+    
+    Vector.prototype.dist = function(vector) {
+        return Math.sqrt(Math.pow(this.x - vector.x, 2) + Math.pow(this.y - vector.y, 2));
+    };
         
     return Vector;
 });

@@ -8,32 +8,31 @@ define(function (require) {
         this.moviendo = false;
         this.velocityMod = 100;
         this.rotation = utils.deg2rad(90);
-        this.movePosition;
+        this.destination = null;
     };  
     Player.prototype = new Sprite(null, {});
     
     Player.prototype.update = function (dt) {
         Sprite.prototype.update.call(this, dt);
-    
-        var clickPosition = inputManager.getClickPosition();
         
-        if (inputManager.isMouseClicked() || this.moviendo) {
-            this.moviendo = true;
-            this.movePosition = inputManager.getClickPosition();
-            if (((this.velocity.x > 0 && this.velocity.y > 0) && (this.position.x >= this.movePosition.x && this.position.y >= this.movePosition.y)) ||
-                    ((this.velocity.x > 0 && this.velocity.y < 0) && (this.position.x >= this.movePosition.x && this.position.y <= this.movePosition.y)) ||
-                    ((this.velocity.x < 0 && this.velocity.y > 0) && (this.position.x <= this.movePosition.x && this.position.y >= this.movePosition.y)) ||
-                    ((this.velocity.x < 0 && this.velocity.y < 0) && (this.position.x <= this.movePosition.x && this.position.y <= this.movePosition.y))) {
-                this.moviendo = false;
-            }
-        }
-        
-        if (this.moviendo) {
-            this.velocity.copy(clickPosition);
+        if (inputManager.isMouseClicked()) {
+            this.destination = inputManager.getClickPosition();
+
+            this.velocity.copy(this.destination);
             this.velocity.sub(this.position);
             this.velocity.normalize();
             this.rotation = Math.atan2(this.velocity.y, this.velocity.x);
             this.velocity.scalar(this.velocityMod);
+            
+            this.moviendo = true;
+        }
+        
+        if (this.moviendo) {
+            var dist = this.position.dist(this.destination);
+            if (dist < 5) {
+                this.moviendo = false;
+                this.position.copy(this.destination);
+            }
         } else {
             this.velocity.scalar(0);
         }
