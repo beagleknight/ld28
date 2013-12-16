@@ -7,8 +7,7 @@ define(function(require) {
         TileMap    = require('tilemap');
     
     var Level = function(game, data) {
-        var i, l, entity;
-        
+        var i, l, entity;       
         this.entities = [];
         this.tileMap = new TileMap(data.layers[0].data, data.layers[1].data);
 
