@@ -8,6 +8,7 @@ define(function (require) {
         this.texture = resourceManager.getImage("player");
         this.moviendo = false;
         this.velocityMod = 100;
+        this.movePosition;
     };  
     Player.prototype = new Entity(null, {});
 
@@ -19,18 +20,23 @@ define(function (require) {
     Player.prototype.update = function (dt) {
         Entity.prototype.update.call(this, dt);
 
-        var clickPosition = inputManager.getClickPosition();
-
-        if (inputManager.isMouseClicked()) {
+        if (inputManager.isMouseClicked() || this.moviendo) {
             this.moviendo = true;
-        }
-        if (this.position.x === clickPosition.x && this.position.y === clickPosition.y) {
-            this.moviendo = false;
+            this.movePosition = inputManager.getClickPosition();
+            if (((this.velocity.direction.x > 0 && this.velocity.direction.y > 0) && (this.position.x >= this.movePosition.x && this.position.y >= this.movePosition.y)) ||
+                    ((this.velocity.direction.x > 0 && this.velocity.direction.y < 0) && (this.position.x >= this.movePosition.x && this.position.y <= this.movePosition.y)) ||
+                    ((this.velocity.direction.x < 0 && this.velocity.direction.y > 0) && (this.position.x <= this.movePosition.x && this.position.y >= this.movePosition.y)) ||
+                    ((this.velocity.direction.x < 0 && this.velocity.direction.y < 0) && (this.position.x <= this.movePosition.x && this.position.y <= this.movePosition.y))) {
+                this.moviendo = false;
+            }
         }
         
         if (this.moviendo) {
-            this.velocity.setPosition({'x': clickPosition.x - this.position.x, 'y': clickPosition.y - this.position.y});
+            this.velocity.setPosition({'x': this.movePosition.x - this.position.x, 'y': this.movePosition.y - this.position.y});
             this.velocity.setVelocity(this.velocityMod);
+        } else {
+            this.velocity.setPosition({'x': 0, 'y': 0});
+            this.velocity.setVelocity(0);
         }
     };
     

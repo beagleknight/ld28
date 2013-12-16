@@ -6,6 +6,8 @@ define(function(require) {
         Entity.call(this, name, position);
         this.alive = true;
         this.texture = resourceManager.getImage("enemy");
+        this.stunTime = 5000;
+        this.stunStart = 0;
     };
     Enemy.prototype = new Entity(null, {});
     
@@ -17,9 +19,20 @@ define(function(require) {
     Enemy.prototype.isAlive = function() {
         return this.alive;
     };
+    Enemy.prototype.isStunned = function() {
+        if (+new Date() - this.stunStart > this.stunTime) {
+            this.stunStart = 0;
+            return false;
+        } else {
+            return true;
+        }
+    };
     
     Enemy.prototype.kill = function() {
         this.alive = false;
+    };
+    Enemy.prototype.stun = function() {
+        this.stunStart = +new Date();
     };
     
     return Enemy;
