@@ -2,12 +2,12 @@ define(function(require) {
     var resourceManager = require('resource_manager'),
         inputManager    = require('input_manager'),
         gameData        = require('game_data'),
-        Level           = require('level');
+        Level           = require('level'),
+        currentLevelId  = null;
 
     var game = {},  
         timeLastUpdate,
-        entities = [],
-        levels = [],
+        levels = {},
         looping = false,
         ctx;
     
@@ -25,52 +25,31 @@ define(function(require) {
         }
     };
     
+    game.addLevel = function(levelId) {
+        levels[levelId] = new Level(game, gameData.levels[levelId]);
+        if (currentLevelId === null) {
+            game.setCurrentLevel(levelId);
+        }
+    };
+    
+    game.setCurrentLevel = function(levelId) {
+        currentLevelId = levelId;
+    };
+    
+    game.getCurrentLevel = function () {
+        return levels[currentLevelId];
+    };
+    
     function loop() {
         window.requestAnimationFrame(loop);
         var now = +new Date();
         var delta = now - timeLastUpdate;
         timeLastUpdate = now;
-        update(delta / 1000);
-        render(ctx);
-    }
-    
-    function render(ctx) {
-        ctx.clearRect(0, 0, 640, 480);
-        game.forEachEntity("all", function (entity) {
-            entity.render(ctx);
-        });
-    }
-    
-    function update(delta) {
-        game.forEachEntity("all", function (entity) {
-            entity.update(delta);
-        });
-    }
-    
-    game.addEntity = function(entity) {
-        entities.push(entity);
-    };
-    
-    game.addLevel = function(levelId) {
-        levels.push(new Level(game, gameData.levels[levelId]));
-    };
-    
-    game.forEachEntity = function (entityGroup, cb) {
-        var i, l;
-        for(i = 0, l = entities.length; i < l; i++) {
-            if (entityGroup === "all" || entities[i].group === entityGroup) {
-                cb(entities[i]);
-            }
+        if (currentLevelId) {
+            levels[currentLevelId].update(delta / 1000);
+            levels[currentLevelId].render(ctx);
         }
-    };
-    
-    game.applyToEntity = function (name, cb) {
-        game.forEachEntity("all", function (entity) {
-            if (entity.name === name) {
-                cb(entity);
-            }
-        });
-    };
+    }
     
     return game;
 });
