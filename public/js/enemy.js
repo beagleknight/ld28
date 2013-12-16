@@ -16,16 +16,25 @@ define(function(require) {
         this.cansancio = 1;
         this.recuperacion = 3;
         this.moving = false;
+        this.velocityMod = 150;
+        this.velocityModExhausted = 25;
     };
     Enemy.prototype = new Sprite(null, {});
 
     Enemy.prototype.update = function (dt) {
         Sprite.prototype.update.call(this, dt);
 
-        if (!this.isStunned() && !this.isExhausted() && this.moving) {
-            this.cansar();
+        if (!this.isStunned() && this.moving) {
+            if (this.isExhausted()) {
+                this.velocity.scalar(this.velocityModExhausted);
+                this.descansar(dt);
+            } else {
+                this.velocity.scalar(this.velocityMod);
+                this.cansar(dt);
+            }
         } else {
-            this.descansar();
+            this.velocity.scalar(0);
+            this.descansar(dt);
         }
     };
     
@@ -62,16 +71,16 @@ define(function(require) {
         this.exhaustedStart = +new Date();
     };
     
-    Enemy.prototype.cansar = function() {
-        this.stamina -= this.cansancio;
+    Enemy.prototype.cansar = function(dt) {
+        this.stamina -= this.cansancio * dt;
         
-        if (stamina <= 0) {
+        if (this.stamina <= 0) {
             this.exhausted();
         }
     };
     
-    Enemy.prototype.descansar = function() {
-        this.stamina += this.recuperacion;
+    Enemy.prototype.descansar = function(dt) {
+        this.stamina += this.recuperacion * dt;
         
         if (this.stamina > this.maxStamina) {
             this.stamina = this.maxStamina;

@@ -8,7 +8,7 @@
         this.rotation = 0;
     };
 
-    Entity.prototype.render = function (ctx) {
+    Entity.prototype.render = function () {
         // ctx.beginPath();
 
         // ctx.moveTo(this.position.x - 5, this.position.y);
