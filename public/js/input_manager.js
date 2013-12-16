@@ -16,9 +16,11 @@ define(function (require) {
     inputManager.getMousePosition = function () {
         return mousePosition;
     };
+    
     inputManager.getClickPosition = function () {
         return clickPosition;
     };
+    
     inputManager.isMouseClicked = function () {
         var clicked = mouseClicked;
         mouseClicked = false;
@@ -29,13 +31,15 @@ define(function (require) {
     function onMouseMove (event) {
         mousePosition.x = event.pageX - canvasRect.left;
         mousePosition.y = event.pageY - canvasRect.top;
+        event.preventDefault();
     }
+    
     function onMouseClick () {
         mouseClicked = true;
         clickPosition.x = event.pageX - canvasRect.left;
         clickPosition.y = event.pageY - canvasRect.top;
+        event.preventDefault();
     }
-    
 
     return inputManager;
 });
