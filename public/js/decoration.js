@@ -1,11 +1,11 @@
 define(function(require) {
-    var Entity = require('entity');
+    var Sprite = require('sprite');
     
     var Decoration = function(name, position) {
-        Entity.call(this, name, position);
+        Sprite.call(this, name, position);
         this.broken = false;
     };
-    Decoration.prototype = new Entity(null, {});
+    Decoration.prototype = new Sprite(null, {});
     
     Decoration.prototype.isBroken = function () {
         return this.broken;

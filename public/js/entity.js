@@ -1,5 +1,5 @@
 ﻿define(function (require) {
-    var Vector = require('vector');
+    //var Vector = require('vector');
     
     var Entity = function (name, position) {
         this.name = name;
@@ -21,8 +21,8 @@
     };
     
     Entity.prototype.update = function (delta) {
-        this.position.x = this.position.x + this.velocity.getVelocityX() * delta;
-        this.position.y = this.position.y + this.velocity.getVelocityY() * delta;
+        this.position.x = this.position.x + this.velocity.x * delta;
+        this.position.y = this.position.y + this.velocity.y * delta;
     };
     
     Entity.prototype.setPosition = function (position) {

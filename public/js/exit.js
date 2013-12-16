@@ -1,11 +1,9 @@
 define(function (require) {
-    var Entity = require('entity'),
-        resourceManager = require('resource_manager');
-
+    var Sprite = require('sprite');
+    
     var Exit = function (name, position, type) {
-        Entity.call(this, name, position);
-        
-        this.texture = resourceManager.getImage(type);
+        Sprite.call(this, name, position, type);
+       
         switch(type) {
             case "window":
                 this.health = 100;
@@ -16,12 +14,7 @@ define(function (require) {
         }
         this.opened = false;
     };  
-    Exit.prototype = new Entity(null, {});
-    
-    Exit.prototype.render = function (ctx) {
-        Entity.prototype.render.call(this, ctx);
-        ctx.drawImage(this.texture, this.position.x, this.position.y);
-    };
+    Exit.prototype = new Sprite(null, {});
   
     Exit.prototype.doDamage = function (damage) {
         this.health -= damage;

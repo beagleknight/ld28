@@ -1,18 +1,14 @@
 define(function(require) {
-    var Entity = require('entity'),
-        resourceManager = require('resource_manager');
+    var Sprite = require('sprite'),
+        utils  = require('utils');
+
     
     var Enemy = function(name, position) {
-        Entity.call(this, name, position);
+        Sprite.call(this, name, position, "enemy");
         this.alive = true;
-        this.texture = resourceManager.getImage("enemy");
+        this.rotation = utils.deg2rad(-90);
     };
-    Enemy.prototype = new Entity(null, {});
-    
-    Enemy.prototype.render = function (ctx) {
-        Entity.prototype.render.call(this, ctx);
-        ctx.drawImage(this.texture, this.position.x, this.position.y);
-    };
+    Enemy.prototype = new Sprite(null, {});
     
     Enemy.prototype.isAlive = function() {
         return this.alive;
