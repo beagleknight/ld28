@@ -9,7 +9,7 @@ define(function(require) {
     var Level = function(game, data) {
         var i, l, entity;       
         this.entities = [];
-        this.tileMap = new TileMap(data.layers[0].data, data.layers[1].data);
+        this.tileMap = new TileMap(data.layers[0].data, data.layers[1].data, data.width, data.height, data.tileheight);
 
         for(i = 0, l = data.layers[2].objects.length; i < l; i++) {
             entity = data.layers[2].objects[i];
