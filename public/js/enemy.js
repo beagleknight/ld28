@@ -9,12 +9,12 @@ define(function(require) {
         this.rotation = utils.deg2rad(-90);
         this.stunTime = 5000;
         this.stunStart = 0;
-        this.stamina = 10000;
-        this.maxStamina = 10000;
+        this.stamina = 100;
+        this.maxStamina = 100;
         this.exhaustedTime = 3000;
         this.exhaustedStart = 0;
-        this.cansancio = 1;
-        this.recuperacion = 3;
+        this.cansancio = 1000;
+        this.recuperacion = 3000;
         this.avoiding = false;
         this.leaving = false;
         this.randomMove = false;
@@ -40,6 +40,9 @@ define(function(require) {
             });
             dist = this.position.dist(player.position);
             
+            this.avoiding = false;
+            this.leaving = false;
+            this.randomMove = false;
             if (dist <= this.fearDistance) {
                 this.avoiding = true;
             } else {
@@ -62,7 +65,9 @@ define(function(require) {
             
             if (this.avoiding || this.leaving || this.randomMove) {
                 if (this.avoiding) {
-                    this.velocity.copy(player.velocity);
+                    this.velocity.copy(this.position);
+                    this.velocity.sub(player.position);
+                    this.velocity.normalize();
                 } else if (this.leaving) {
                     this.velocity.copy(exit.position);
                     this.velocity.sub(this.position);
