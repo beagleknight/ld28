@@ -29,15 +29,15 @@ define(function (require) {
     };
     
     function onMouseMove (event) {
-        mousePosition.x = event.pageX - canvasRect.left;
-        mousePosition.y = event.pageY - canvasRect.top;
+        mousePosition.x = event.clientX - canvasRect.left;
+        mousePosition.y = event.clientY - canvasRect.top;
         event.preventDefault();
     }
     
     function onMouseClick () {
         mouseClicked = true;
-        clickPosition.x = event.pageX - canvasRect.left;
-        clickPosition.y = event.pageY - canvasRect.top;
+        clickPosition.x = event.clientX - canvasRect.left;
+        clickPosition.y = event.clientY - canvasRect.top;
         event.preventDefault();
     }
 
