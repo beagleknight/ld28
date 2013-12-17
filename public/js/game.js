@@ -1,9 +1,10 @@
 define(function(require) {
-    var resourceManager = require('resource_manager'),
-        inputManager    = require('input_manager'),
-        gameData        = require('game_data'),
-        Level           = require('level'),
-        currentLevelId  = null;
+    var resourceManager     = require('resource_manager'),
+        inputManager        = require('input_manager'),
+        gameData            = require('game_data'),
+        requestAnimFrame    = require('raf'),
+        Level               = require('level'),
+        currentLevelId      = null;
 
     var game = {},  
         timeLastUpdate,
@@ -41,7 +42,7 @@ define(function(require) {
     };
     
     function loop() {
-        window.requestAnimationFrame(loop);
+        requestAnimFrame(loop);
         var now = +new Date();
         var delta = now - timeLastUpdate;
         timeLastUpdate = now;
