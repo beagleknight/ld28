@@ -1,8 +1,8 @@
 define(function(require) {
-    var Sprite = require('sprite'),
-        utils  = require('utils');
+    var Sprite  = require('sprite'),
+        $       = require('jquery'),
+        utils   = require('utils');
 
-    
     var Enemy = function(name, position) {
         Sprite.call(this, name, position, "enemy");
         this.alive = true;
@@ -47,14 +47,14 @@ define(function(require) {
                 this.avoiding = true;
             } else {
                 dist = undefined;
-                /*level.forEachEntity("exit", function(entity) {
+                level.forEachEntity("exit", $.proxy(function(entity) {
                     distTemp = this.position.dist(entity.position);
                     
                     if (!dist || dist > distTemp) {
                         dist = distTemp;
                         exit = entity;
                     }
-                });*/
+                }, this));
                 
                 if (dist <= this.visionDistance) {
                     this.leaving = true;
